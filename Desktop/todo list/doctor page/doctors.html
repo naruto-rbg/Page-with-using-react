@@ -1,0 +1,1137 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Doctor | Morrow Health</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #167d75;
+            --dark: #105e58;
+            --mint: #e7f5f0;
+            --bg: #f8faf8;
+            --white: #ffffff;
+            --text: #193b39;
+            --muted: #708582;
+            --border: #e5eeea;
+            --shadow: 0 12px 35px rgba(25, 59, 57, .07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: "Manrope", sans-serif;
+            line-height: 1.25;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1160px, 90%);
+            margin: auto;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Manrope", sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            display: grid;
+            place-items: center;
+            width: 39px;
+            height: 39px;
+            color: white;
+            background: var(--primary);
+            border-radius: 13px;
+        }
+
+        .logo span:last-child {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 27px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #536b68;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border-radius: 11px;
+            border: 1px solid transparent;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            background: white;
+            color: var(--text);
+        }
+
+        .menu-toggle {
+            display: none;
+            border: none;
+            background: none;
+            color: var(--text);
+            font-size: 22px;
+        }
+
+        .page-hero {
+            padding: 65px 0 48px;
+            background: linear-gradient(135deg, #eaf6f1, #f8faf8 70%);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            background: var(--mint);
+            border-radius: 30px;
+            padding: 8px 13px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 18px;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(36px, 5vw, 53px);
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
+
+        .page-hero p {
+            max-width: 600px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .main-layout {
+            display: grid;
+            grid-template-columns: 245px 1fr;
+            gap: 30px;
+            padding: 48px 0 90px;
+            align-items: start;
+        }
+
+        .filter-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .filter-heading h3 {
+            font-size: 17px;
+        }
+
+        .clear-btn {
+            border: none;
+            background: none;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .filter-group {
+            padding-bottom: 23px;
+            margin-bottom: 23px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-group:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .filter-group h4 {
+            font-family: "DM Sans", sans-serif;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 12px 0;
+            color: var(--muted);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .filter-option input {
+            accent-color: var(--primary);
+        }
+
+        .filter-group select,
+        .filter-group input[type="text"] {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            background: white;
+            color: var(--text);
+            font-size: 12px;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: var(--primary);
+        }
+
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .results-header h2 {
+            font-size: 23px;
+            letter-spacing: -.6px;
+        }
+
+        .results-header p {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .sort-select {
+            max-width: 190px;
+            padding: 11px 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            color: var(--text);
+            outline: none;
+            font-size: 12px;
+        }
+
+        .doctor-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .doctor-card {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            overflow: hidden;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            transition: .25s ease;
+            animation: fadeUp .45s ease both;
+        }
+
+        .doctor-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-3px);
+        }
+
+        .doctor-image {
+            position: relative;
+            min-height: 245px;
+            background: var(--mint);
+        }
+
+        .doctor-image img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            inset: 0;
+            object-fit: cover;
+        }
+
+        .doctor-content {
+            padding: 23px;
+        }
+
+        .doctor-top {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .doctor-top h3 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .specialty {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #d89a28;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .experience {
+            margin: 14px 0 10px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .experience i {
+            color: var(--primary);
+            margin-right: 6px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .doctor-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .fee {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .fee small {
+            display: block;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        .availability {
+            color: #25835d;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .availability i {
+            margin-right: 4px;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 55px 25px;
+        }
+
+        .no-results i {
+            color: var(--primary);
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .no-results h3 {
+            margin-bottom: 9px;
+        }
+
+        .no-results p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            padding: 28px 0;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: .6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 14px;
+            }
+
+            .main-layout {
+                grid-template-columns: 210px 1fr;
+                gap: 18px;
+            }
+
+            .doctor-card {
+                grid-template-columns: 145px 1fr;
+            }
+
+            .doctor-content {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                top: 70px;
+                left: 0;
+                right: 0;
+                gap: 0;
+                padding: 12px 5% 20px;
+                background: white;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 12px 0;
+            }
+
+            .nav-actions .btn-outline {
+                display: none;
+            }
+
+            .nav-actions .btn {
+                padding: 10px 11px;
+                font-size: 11px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .page-hero {
+                padding: 48px 0 35px;
+            }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+                padding-top: 28px;
+            }
+
+            .filter-card {
+                position: static;
+            }
+
+            .filter-group {
+                padding-bottom: 14px;
+                margin-bottom: 14px;
+            }
+
+            .results-header {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .sort-select {
+                max-width: none;
+                width: 100%;
+            }
+
+            .doctor-card {
+                grid-template-columns: 1fr;
+            }
+
+            .doctor-image {
+                min-height: 260px;
+            }
+
+            .doctor-content {
+                padding: 20px;
+            }
+
+            .doctor-top h3 {
+                font-size: 17px;
+            }
+
+            .doctor-bottom {
+                align-items: start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                Morrow<span>Health</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a class="active" href="doctors.html">Find Doctors</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="about.html">About Us</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Log in</a>
+                <a href="appointment.html" class="btn btn-primary">Book Appointment <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="eyebrow"><i class="fa-solid fa-stethoscope"></i> Your care, your choice</div>
+            <h1>Find the right doctor for you.</h1>
+            <p>Explore healthcare professionals, compare specialties, and find a consultation that fits your schedule and needs.</p>
+        </div>
+    </section>
+
+    <main class="container main-layout">
+        <aside class="filter-card">
+            <div class="filter-heading">
+                <h3><i class="fa-solid fa-sliders"></i> Filters</h3>
+                <button class="clear-btn" id="clearFilters" type="button">Clear all</button>
+            </div>
+
+            <div class="filter-group">
+                <h4>Search by name</h4>
+                <input type="text" id="nameSearch" placeholder="Doctor's name">
+            </div>
+
+            <div class="filter-group">
+                <h4>Specialty</h4>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="General Physician">
+                    General Physician
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="Cardiologist">
+                    Cardiologist
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="Dermatologist">
+                    Dermatologist
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="Pediatrician">
+                    Pediatrician
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="Dentist">
+                    Dentist
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="specialty" value="Psychologist">
+                    Psychologist
+                </label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Consultation fee</h4>
+                <select id="feeFilter">
+                    <option value="">Any price</option>
+                    <option value="600">Up to ₹600</option>
+                    <option value="800">Up to ₹800</option>
+                    <option value="1000">Up to ₹1,000</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <h4>Minimum rating</h4>
+                <select id="ratingFilter">
+                    <option value="">Any rating</option>
+                    <option value="4.5">4.5 and above</option>
+                    <option value="4.8">4.8 and above</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="applyFilters" style="width:100%">
+                Apply filters
+            </button>
+        </aside>
+
+        <section>
+            <div class="results-header">
+                <div>
+                    <h2>Meet your doctors</h2>
+                    <p id="resultCount">Showing all doctors</p>
+                </div>
+
+                <select class="sort-select" id="sortBy" aria-label="Sort doctors">
+                    <option value="recommended">Recommended</option>
+                    <option value="fee-low">Fee: low to high</option>
+                    <option value="fee-high">Fee: high to low</option>
+                    <option value="rating">Highest rated</option>
+                    <option value="experience">Most experienced</option>
+                </select>
+            </div>
+
+            <div class="doctor-list" id="doctorList">
+
+                <article class="doctor-card reveal"
+                    data-name="aisha mehta"
+                    data-specialty="General Physician"
+                    data-fee="600"
+                    data-rating="4.9"
+                    data-experience="9">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=85" alt="Dr. Aisha Mehta">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Aisha Mehta</h3>
+                                <div class="specialty">General Physician</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 9 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-video"></i> Online and in-person
+                        </div>
+
+                        <p class="description">
+                            Focuses on primary care, routine health assessments, and preventive healthcare with a patient-first approach.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹600 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=aisha" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doctor-card reveal"
+                    data-name="rohan kapoor"
+                    data-specialty="Cardiologist"
+                    data-fee="900"
+                    data-rating="4.8"
+                    data-experience="12">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=85" alt="Dr. Rohan Kapoor">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Rohan Kapoor</h3>
+                                <div class="specialty">Cardiologist</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.8</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 12 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-hospital"></i> In-person visits
+                        </div>
+
+                        <p class="description">
+                            Supports patients with heart health assessments, cardiovascular risk factors, and long-term heart care.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹900 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=rohan" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doctor-card reveal"
+                    data-name="neha sharma"
+                    data-specialty="Dermatologist"
+                    data-fee="700"
+                    data-rating="4.9"
+                    data-experience="7">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=85" alt="Dr. Neha Sharma">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Neha Sharma</h3>
+                                <div class="specialty">Dermatologist</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 7 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-video"></i> Online and in-person
+                        </div>
+
+                        <p class="description">
+                            Provides consultations for skin concerns, hair health, and personalized skincare guidance.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹700 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=neha" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doctor-card reveal"
+                    data-name="arjun verma"
+                    data-specialty="Pediatrician"
+                    data-fee="600"
+                    data-rating="4.7"
+                    data-experience="8">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=85" alt="Dr. Arjun Verma">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Arjun Verma</h3>
+                                <div class="specialty">Pediatrician</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.7</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 8 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-hospital"></i> In-person visits
+                        </div>
+
+                        <p class="description">
+                            Works with families to support children's health, growth, routine check-ups, and wellbeing.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹600 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=arjun" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doctor-card reveal"
+                    data-name="simran kaur"
+                    data-specialty="Dentist"
+                    data-fee="500"
+                    data-rating="4.6"
+                    data-experience="6">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=600&q=85" alt="Dr. Simran Kaur">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Simran Kaur</h3>
+                                <div class="specialty">Dentist</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.6</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 6 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-hospital"></i> In-person visits
+                        </div>
+
+                        <p class="description">
+                            Helps patients maintain oral health with routine dental check-ups and treatment consultations.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹500 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=simran" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="doctor-card reveal"
+                    data-name="kabir singh"
+                    data-specialty="Psychologist"
+                    data-fee="800"
+                    data-rating="4.9"
+                    data-experience="10">
+
+                    <div class="doctor-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85" alt="Dr. Kabir Singh">
+                    </div>
+
+                    <div class="doctor-content">
+                        <div class="doctor-top">
+                            <div>
+                                <h3>Dr. Kabir Singh</h3>
+                                <div class="specialty">Psychologist</div>
+                            </div>
+                            <div class="rating"><i class="fa-solid fa-star"></i> 4.9</div>
+                        </div>
+
+                        <div class="experience">
+                            <i class="fa-solid fa-briefcase-medical"></i> 10 years experience
+                            &nbsp; · &nbsp; <i class="fa-solid fa-video"></i> Online consultations
+                        </div>
+
+                        <p class="description">
+                            Offers supportive sessions focused on emotional wellbeing, stress management, and coping skills.
+                        </p>
+
+                        <div class="doctor-bottom">
+                            <div>
+                                <div class="fee">₹800 <small style="display:block;font-size:10px;color:var(--muted);font-weight:500">per consultation</small></div>
+                                <div class="availability"><i class="fa-solid fa-circle-check"></i> Slots available</div>
+                            </div>
+                            <a href="appointment.html?doctor=kabir" class="btn btn-primary">Book appointment <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="no-results" id="noResults">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>No doctors found</h3>
+                <p>Try changing your filters or searching for another specialty.</p>
+                <button class="btn btn-primary" type="button" id="resetNoResults">Reset filters</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                Morrow<span>Health</span>
+            </a>
+            <span>© <span id="currentYear"></span> Morrow Health · Educational demo project</span>
+            <a href="about.html" style="color:var(--primary);font-weight:700">Contact us</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+            const doctorCards = Array.from(document.querySelectorAll(".doctor-card"));
+
+            const nameSearch = document.getElementById("nameSearch");
+            const feeFilter = document.getElementById("feeFilter");
+            const ratingFilter = document.getElementById("ratingFilter");
+            const sortBy = document.getElementById("sortBy");
+            const applyFilters = document.getElementById("applyFilters");
+            const clearFilters = document.getElementById("clearFilters");
+            const resultCount = document.getElementById("resultCount");
+            const noResults = document.getElementById("noResults");
+            const doctorList = document.getElementById("doctorList");
+
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function () {
+                    const open = navLinks.classList.toggle("open");
+                    menuToggle.setAttribute("aria-expanded", String(open));
+                    menuToggle.innerHTML = open
+                        ? '<i class="fa-solid fa-xmark"></i>'
+                        : '<i class="fa-solid fa-bars"></i>';
+                });
+            }
+
+            function getCheckedSpecialties() {
+                return Array.from(
+                    document.querySelectorAll('input[name="specialty"]:checked')
+                ).map(function (checkbox) {
+                    return checkbox.value;
+                });
+            }
+
+            function applyDoctorFilters() {
+                const searchText = nameSearch.value.trim().toLowerCase();
+                const specialties = getCheckedSpecialties();
+                const maxFee = feeFilter.value ? Number(feeFilter.value) : Infinity;
+                const minRating = ratingFilter.value ? Number(ratingFilter.value) : 0;
+
+                let visibleCards = doctorCards.filter(function (card) {
+                    const name = card.dataset.name;
+                    const specialty = card.dataset.specialty;
+                    const fee = Number(card.dataset.fee);
+                    const rating = Number(card.dataset.rating);
+
+                    const matchesName = name.includes(searchText);
+                    const matchesSpecialty = specialties.length === 0 ||
+                        specialties.includes(specialty);
+                    const matchesFee = fee <= maxFee;
+                    const matchesRating = rating >= minRating;
+
+                    return matchesName && matchesSpecialty && matchesFee && matchesRating;
+                });
+
+                const sortValue = sortBy.value;
+
+                visibleCards.sort(function (a, b) {
+                    if (sortValue === "fee-low") {
+                        return Number(a.dataset.fee) - Number(b.dataset.fee);
+                    }
+
+                    if (sortValue === "fee-high") {
+                        return Number(b.dataset.fee) - Number(a.dataset.fee);
+                    }
+
+                    if (sortValue === "rating") {
+                        return Number(b.dataset.rating) - Number(a.dataset.rating);
+                    }
+
+                    if (sortValue === "experience") {
+                        return Number(b.dataset.experience) - Number(a.dataset.experience);
+                    }
+
+                    return doctorCards.indexOf(a) - doctorCards.indexOf(b);
+                });
+
+                doctorCards.forEach(function (card) {
+                    card.style.display = "none";
+                });
+
+                visibleCards.forEach(function (card) {
+                    card.style.display = "grid";
+                    doctorList.appendChild(card);
+                });
+
+                resultCount.textContent = "Showing " + visibleCards.length +
+                    (visibleCards.length === 1 ? " doctor" : " doctors");
+
+                noResults.style.display = visibleCards.length === 0 ? "block" : "none";
+            }
+
+            function resetFilters() {
+                nameSearch.value = "";
+                feeFilter.value = "";
+                ratingFilter.value = "";
+                sortBy.value = "recommended";
+
+                document.querySelectorAll('input[name="specialty"]').forEach(function (checkbox) {
+                    checkbox.checked = false;
+                });
+
+                const params = new URLSearchParams(window.location.search);
+                if (params.has("specialty") || params.has("location") || params.has("date")) {
+                    window.history.replaceState({}, "", "doctors.html");
+                }
+
+                applyDoctorFilters();
+            }
+
+            applyFilters.addEventListener("click", applyDoctorFilters);
+            nameSearch.addEventListener("input", applyDoctorFilters);
+            feeFilter.addEventListener("change", applyDoctorFilters);
+            ratingFilter.addEventListener("change", applyDoctorFilters);
+            sortBy.addEventListener("change", applyDoctorFilters);
+            clearFilters.addEventListener("click", resetFilters);
+            document.getElementById("resetNoResults").addEventListener("click", resetFilters);
+
+            const params = new URLSearchParams(window.location.search);
+            const specialtyFromUrl = params.get("specialty");
+            const locationFromUrl = params.get("location");
+
+            if (specialtyFromUrl) {
+                const matchingCheckbox = Array.from(
+                    document.querySelectorAll('input[name="specialty"]')
+                ).find(function (checkbox) {
+                    return checkbox.value.toLowerCase() === specialtyFromUrl.toLowerCase();
+                });
+
+                if (matchingCheckbox) {
+                    matchingCheckbox.checked = true;
+                }
+            }
+
+            if (locationFromUrl) {
+                nameSearch.placeholder = "Search doctors · Location: " + locationFromUrl;
+            }
+
+            applyDoctorFilters();
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll(".reveal").forEach(function (element) {
+                    observer.observe(element);
+                });
+            } else {
+                document.querySelectorAll(".reveal").forEach(function (element) {
+                    element.classList.add("visible");
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+```

@@ -1,0 +1,1350 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morrow Health | Healthcare Made Human</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #167d75;
+            --primary-dark: #105e58;
+            --mint: #e7f5f0;
+            --background: #f8faf8;
+            --white: #ffffff;
+            --text: #193b39;
+            --muted: #708582;
+            --border: #e5eeea;
+            --radius: 20px;
+            --shadow: 0 12px 40px rgba(25, 59, 57, 0.07);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: "Manrope", sans-serif;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .container {
+            width: min(1160px, 90%);
+            margin: auto;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Manrope", sans-serif;
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            display: grid;
+            place-items: center;
+            width: 39px;
+            height: 39px;
+            color: white;
+            background: var(--primary);
+            border-radius: 13px;
+        }
+
+        .logo span:last-child {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #536b68;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 13px 20px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 7px 18px rgba(22, 125, 117, 0.16);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 0;
+            color: var(--text);
+            font-size: 23px;
+        }
+
+        .hero {
+            padding: 76px 0 70px;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.02fr 0.98fr;
+            gap: 58px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border-radius: 50px;
+            background: var(--mint);
+            color: var(--primary-dark);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 23px;
+        }
+
+        .eyebrow i {
+            color: var(--primary);
+        }
+
+        .hero h1 {
+            max-width: 620px;
+            font-size: clamp(40px, 5vw, 65px);
+            letter-spacing: -3px;
+            line-height: 1.09;
+            margin-bottom: 23px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-copy {
+            max-width: 490px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .trust-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 34px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .avatars {
+            display: flex;
+            padding-left: 5px;
+        }
+
+        .avatars img {
+            width: 35px;
+            height: 35px;
+            object-fit: cover;
+            border: 3px solid var(--background);
+            border-radius: 50%;
+            margin-left: -7px;
+        }
+
+        .trust-row strong {
+            color: var(--text);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 510px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-photo {
+            width: 88%;
+            height: 465px;
+            object-fit: cover;
+            border-radius: 180px 180px 30px 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .floating-card {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            background: white;
+            padding: 16px;
+            border-radius: 17px;
+            box-shadow: 0 15px 45px rgba(25, 59, 57, 0.12);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-card.top {
+            top: 45px;
+            left: -5px;
+        }
+
+        .floating-card.bottom {
+            bottom: 40px;
+            right: -4px;
+            animation-delay: 1s;
+        }
+
+        .float-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--mint);
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .floating-card strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .floating-card small {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-9px); }
+        }
+
+        .search-section {
+            position: relative;
+            z-index: 2;
+            margin-top: -12px;
+        }
+
+        .search-box {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 23px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-field {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-width: 0;
+        }
+
+        .search-field > i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .search-field label {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .search-field select,
+        .search-field input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 25px;
+            margin-bottom: 36px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(29px, 3.5vw, 42px);
+            letter-spacing: -1.6px;
+            margin-bottom: 11px;
+        }
+
+        .section-heading p {
+            max-width: 510px;
+            color: var(--muted);
+        }
+
+        .text-link {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .text-link i {
+            margin-left: 5px;
+            transition: transform 0.2s;
+        }
+
+        .text-link:hover i {
+            transform: translateX(4px);
+        }
+
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 19px;
+        }
+
+        .specialty-card {
+            padding: 27px 23px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .specialty-icon {
+            display: grid;
+            place-items: center;
+            width: 55px;
+            height: 55px;
+            background: var(--mint);
+            color: var(--primary);
+            border-radius: 17px;
+            font-size: 22px;
+            margin-bottom: 23px;
+        }
+
+        .specialty-card h3 {
+            font-size: 17px;
+            margin-bottom: 9px;
+        }
+
+        .specialty-card p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .doctor-card {
+            overflow: hidden;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .doctor-photo-wrap {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: var(--mint);
+        }
+
+        .doctor-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .doctor-card:hover .doctor-photo {
+            transform: scale(1.05);
+        }
+
+        .availability {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 11px;
+            border-radius: 30px;
+            background: white;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .availability::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            background: #25a878;
+            border-radius: 50%;
+        }
+
+        .doctor-info {
+            padding: 22px;
+        }
+
+        .doctor-top {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .doctor-top h3 {
+            font-size: 18px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #d89a28;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .doctor-specialty {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .doctor-description {
+            min-height: 42px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .doctor-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid var(--border);
+            padding-top: 17px;
+            margin-top: 17px;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .price small {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .doctor-footer .btn {
+            padding: 10px 13px;
+            font-size: 12px;
+        }
+
+        .how-section {
+            background: #eef7f3;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .step-card {
+            padding: 15px 10px;
+        }
+
+        .step-number {
+            display: grid;
+            place-items: center;
+            width: 53px;
+            height: 53px;
+            margin-bottom: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 17px;
+            font-family: "Manrope", sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .step-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .step-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .cta-section {
+            padding: 30px 0 100px;
+        }
+
+        .cta-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            overflow: hidden;
+            padding: 58px;
+            border-radius: 30px;
+            color: white;
+            background: var(--primary-dark);
+        }
+
+        .cta-card::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 50%;
+            right: 15%;
+            top: -180px;
+            box-shadow: 0 0 0 40px rgba(255,255,255,.04),
+                        0 0 0 80px rgba(255,255,255,.03);
+        }
+
+        .cta-card h2 {
+            max-width: 600px;
+            font-size: clamp(28px, 4vw, 42px);
+            letter-spacing: -1.5px;
+            margin-bottom: 13px;
+        }
+
+        .cta-card p {
+            max-width: 520px;
+            color: #c9e5df;
+        }
+
+        .cta-card .btn {
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .footer {
+            padding: 65px 0 25px;
+            background: white;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-about p {
+            max-width: 290px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.9;
+            margin-top: 17px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        .footer-column a {
+            display: block;
+            width: fit-content;
+            margin-bottom: 12px;
+            color: var(--muted);
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 200;
+            max-width: 350px;
+            padding: 15px 20px;
+            border-radius: 13px;
+            background: var(--text);
+            color: white;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+            transition: 0.3s;
+            font-size: 13px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 950px) {
+            .nav-links {
+                gap: 16px;
+            }
+
+            .hero-grid {
+                gap: 25px;
+            }
+
+            .hero-visual {
+                min-height: 430px;
+            }
+
+            .hero-photo {
+                height: 390px;
+            }
+
+            .specialty-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-inner {
+                min-height: 70px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 10px 5% 20px;
+                background: white;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 13px 0;
+            }
+
+            .nav-actions .btn-outline {
+                display: none;
+            }
+
+            .nav-actions .btn {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .hero {
+                padding: 48px 0 35px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: clamp(40px, 12vw, 58px);
+                letter-spacing: -2px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .hero-visual {
+                min-height: 370px;
+                margin-top: 15px;
+            }
+
+            .hero-photo {
+                width: 85%;
+                height: 350px;
+            }
+
+            .floating-card.top {
+                left: 0;
+                top: 20px;
+            }
+
+            .floating-card.bottom {
+                right: 0;
+                bottom: 15px;
+            }
+
+            .search-section {
+                margin-top: 20px;
+            }
+
+            .search-box {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                padding: 20px;
+            }
+
+            .search-field {
+                padding-bottom: 13px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .search-box .btn {
+                width: 100%;
+            }
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+                margin-bottom: 25px;
+            }
+
+            .specialty-grid,
+            .doctor-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specialty-card {
+                padding: 23px;
+            }
+
+            .doctor-photo-wrap {
+                height: 280px;
+            }
+
+            .steps-grid {
+                gap: 15px;
+            }
+
+            .cta-section {
+                padding-bottom: 70px;
+            }
+
+            .cta-card {
+                align-items: start;
+                flex-direction: column;
+                padding: 32px 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 20px;
+            }
+
+            .footer-about {
+                grid-column: 1 / -1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo" aria-label="Morrow Health home">
+                <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                Morrow<span>Health</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a class="active" href="index.html">Home</a>
+                <a href="doctors.html">Find Doctors</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="about.html">About Us</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Log in</a>
+                <a href="appointment.html" class="btn btn-primary">Book Appointment <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="eyebrow"><i class="fa-solid fa-heart"></i> Healthcare, made human</div>
+
+                    <h1>Better care starts with <span>a conversation.</span></h1>
+
+                    <p class="hero-copy">
+                        Find the right doctor, book a time that works for you, and take control of your health with a simpler, more personal healthcare experience.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="doctors.html" class="btn btn-primary">Find your doctor <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="how-it-works.html" class="btn btn-outline"><i class="fa-regular fa-circle-play"></i> How it works</a>
+                    </div>
+
+                    <div class="trust-row">
+                        <div class="avatars">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=100&q=80" alt="Doctor portrait">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=100&q=80" alt="Doctor portrait">
+                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=100&q=80" alt="Doctor portrait">
+                        </div>
+                        <span>Care from <strong>experienced professionals</strong></span>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <img class="hero-photo" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=85" alt="Healthcare professional speaking with a patient">
+
+                    <div class="floating-card top">
+                        <div class="float-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div>
+                            <strong>Easy scheduling</strong>
+                            <small>Choose a time that suits you</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card bottom">
+                        <div class="float-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <div>
+                            <strong>Your health comes first</strong>
+                            <small>Care centered around you</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="container">
+                <form class="search-box" id="doctorSearchForm">
+                    <div class="search-field">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <div style="flex:1">
+                            <label for="specialty">I'm looking for</label>
+                            <select id="specialty" name="specialty">
+                                <option value="">Any specialty</option>
+                                <option value="General Physician">General Physician</option>
+                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="Dermatologist">Dermatologist</option>
+                                <option value="Pediatrician">Pediatrician</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="Psychologist">Psychologist</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-field">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div style="flex:1">
+                            <label for="location">Location</label>
+                            <input id="location" name="location" type="text" placeholder="City or area">
+                        </div>
+                    </div>
+
+                    <div class="search-field">
+                        <i class="fa-regular fa-calendar"></i>
+                        <div style="flex:1">
+                            <label for="visitDate">Preferred date</label>
+                            <input id="visitDate" name="date" type="date">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search doctors</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <div class="eyebrow">Care for every need</div>
+                        <h2>How can we help you?</h2>
+                        <p>Explore care by specialty and connect with a professional who understands your needs.</p>
+                    </div>
+                    <a href="doctors.html" class="text-link">Explore all doctors <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="specialty-grid">
+                    <a href="doctors.html?specialty=General%20Physician" class="specialty-card reveal">
+                        <div class="specialty-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                        <h3>General Medicine</h3>
+                        <p>Everyday health concerns, preventive care, and routine check-ups.</p>
+                        <span class="text-link">Find a doctor <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <a href="doctors.html?specialty=Cardiologist" class="specialty-card reveal">
+                        <div class="specialty-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h3>Cardiology</h3>
+                        <p>Heart health, blood pressure guidance, and cardiovascular care.</p>
+                        <span class="text-link">Find a doctor <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <a href="doctors.html?specialty=Dermatologist" class="specialty-card reveal">
+                        <div class="specialty-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
+                        <h3>Dermatology</h3>
+                        <p>Support for skin, hair, and nail health from specialists.</p>
+                        <span class="text-link">Find a doctor <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+
+                    <a href="doctors.html?specialty=Pediatrician" class="specialty-card reveal">
+                        <div class="specialty-icon"><i class="fa-solid fa-baby"></i></div>
+                        <h3>Pediatrics</h3>
+                        <p>Thoughtful healthcare for children, from check-ups to concerns.</p>
+                        <span class="text-link">Find a doctor <i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background:#f0f6f3">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <div class="eyebrow">Meet your care team</div>
+                        <h2>Doctors who listen first.</h2>
+                        <p>Discover professionals focused on helping you feel informed, supported, and confident about your care.</p>
+                    </div>
+                    <a href="doctors.html" class="text-link">Meet all doctors <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="doctor-grid">
+                    <article class="doctor-card reveal">
+                        <div class="doctor-photo-wrap">
+                            <img class="doctor-photo" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=85" alt="Dr. Aisha Mehta">
+                            <span class="availability">Appointments available</span>
+                        </div>
+                        <div class="doctor-info">
+                            <div class="doctor-top">
+                                <h3>Dr. Aisha Mehta</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <div class="doctor-specialty">General Physician</div>
+                            <p class="doctor-description">Patient-focused primary care and preventive health consultations.</p>
+                            <div class="doctor-footer">
+                                <div class="price">₹600 <small>Consultation fee</small></div>
+                                <a href="appointment.html?doctor=aisha" class="btn btn-primary">Book visit</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="doctor-card reveal">
+                        <div class="doctor-photo-wrap">
+                            <img class="doctor-photo" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=85" alt="Dr. Rohan Kapoor">
+                            <span class="availability">Appointments available</span>
+                        </div>
+                        <div class="doctor-info">
+                            <div class="doctor-top">
+                                <h3>Dr. Rohan Kapoor</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                            </div>
+                            <div class="doctor-specialty">Cardiologist</div>
+                            <p class="doctor-description">Heart health consultations with a focus on long-term wellbeing.</p>
+                            <div class="doctor-footer">
+                                <div class="price">₹900 <small>Consultation fee</small></div>
+                                <a href="appointment.html?doctor=rohan" class="btn btn-primary">Book visit</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="doctor-card reveal">
+                        <div class="doctor-photo-wrap">
+                            <img class="doctor-photo" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=85" alt="Dr. Neha Sharma">
+                            <span class="availability">Appointments available</span>
+                        </div>
+                        <div class="doctor-info">
+                            <div class="doctor-top">
+                                <h3>Dr. Neha Sharma</h3>
+                                <span class="rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                            </div>
+                            <div class="doctor-specialty">Dermatologist</div>
+                            <p class="doctor-description">Personalized consultations for skin concerns and healthy routines.</p>
+                            <div class="doctor-footer">
+                                <div class="price">₹700 <small>Consultation fee</small></div>
+                                <a href="appointment.html?doctor=neha" class="btn btn-primary">Book visit</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section how-section">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <div class="eyebrow">Simple by design</div>
+                        <h2>Care in a few easy steps.</h2>
+                        <p>Less time figuring things out. More time focusing on what matters: your health.</p>
+                    </div>
+                </div>
+
+                <div class="steps-grid">
+                    <article class="step-card reveal">
+                        <div class="step-number"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h3>Find your doctor</h3>
+                        <p>Browse doctors by specialty, review their profiles, and choose someone who feels right for you.</p>
+                    </article>
+
+                    <article class="step-card reveal">
+                        <div class="step-number"><i class="fa-regular fa-calendar-check"></i></div>
+                        <h3>Choose a time</h3>
+                        <p>Select your preferred date and time, share your details, and submit your appointment request.</p>
+                    </article>
+
+                    <article class="step-card reveal">
+                        <div class="step-number"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Focus on feeling better</h3>
+                        <p>Keep track of your appointments through your dashboard and stay organized on your care journey.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-card reveal">
+                    <div>
+                        <h2>Your health deserves a little more attention.</h2>
+                        <p>Take the next step toward care that fits your life. Find a doctor and schedule your visit today.</p>
+                    </div>
+                    <a href="doctors.html" class="btn">Find a doctor <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                        Morrow<span>Health</span>
+                    </a>
+                    <p>Making healthcare easier to access, easier to understand, and a little more human for everyone.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <a href="doctors.html">Find a doctor</a>
+                    <a href="appointment.html">Book an appointment</a>
+                    <a href="how-it-works.html">How it works</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Your account</h4>
+                    <a href="login.html">Patient login</a>
+                    <a href="patient-dashboard.html">Patient dashboard</a>
+                    <a href="doctor-dashboard.html">Doctor dashboard</a>
+                </div>
+
+                <div class="footer-column">
+                    <h4>About Morrow</h4>
+                    <a href="about.html">Our story</a>
+                    <a href="about.html#contact">Contact us</a>
+                    <a href="about.html#privacy">Privacy information</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© <span id="currentYear"></span> Morrow Health. Educational demo project.</span>
+                <span>Designed with care <i class="fa-solid fa-heart" style="color:var(--primary)"></i></span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+            const searchForm = document.getElementById("doctorSearchForm");
+            const toast = document.getElementById("toast");
+
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function () {
+                    const isOpen = navLinks.classList.toggle("open");
+                    menuToggle.setAttribute("aria-expanded", String(isOpen));
+                    menuToggle.innerHTML = isOpen
+                        ? '<i class="fa-solid fa-xmark"></i>'
+                        : '<i class="fa-solid fa-bars"></i>';
+                });
+
+                navLinks.querySelectorAll("a").forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        navLinks.classList.remove("open");
+                        menuToggle.setAttribute("aria-expanded", "false");
+                        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                    });
+                });
+            }
+
+            let toastTimer;
+
+            function showToast(message) {
+                toast.textContent = message;
+                toast.classList.add("show");
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(function () {
+                    toast.classList.remove("show");
+                }, 3200);
+            }
+
+            if (searchForm) {
+                searchForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const specialty = document.getElementById("specialty").value;
+                    const location = document.getElementById("location").value.trim();
+                    const date = document.getElementById("visitDate").value;
+
+                    const params = new URLSearchParams();
+
+                    if (specialty) params.set("specialty", specialty);
+                    if (location) params.set("location", location);
+                    if (date) params.set("date", date);
+
+                    window.location.href = "doctors.html" + (params.toString() ? "?" + params.toString() : "");
+                });
+            }
+
+            const today = new Date();
+            const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+                .toISOString().split("T")[0];
+
+            const dateInput = document.getElementById("visitDate");
+            if (dateInput) {
+                dateInput.min = localToday;
+            }
+
+            const revealElements = document.querySelectorAll(".reveal");
+
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+
+                revealElements.forEach(function (element) {
+                    observer.observe(element);
+                });
+            } else {
+                revealElements.forEach(function (element) {
+                    element.classList.add("visible");
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+```
